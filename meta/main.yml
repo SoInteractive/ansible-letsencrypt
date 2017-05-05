@@ -15,6 +15,6 @@ galaxy_info:
    - certificates
    - letsencrypt
 
-dependencies:
-  - { role: nginx }
+#dependencies:
+#  - { role: nginx }
 
