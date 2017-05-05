@@ -1,4 +1,7 @@
 ---
 letsencrypt_email: admin@example.com
 letsencrypt_domain: example.com
+
 letsencrypt_autorenew: true
+letsencrypt_webroot: /var/www/letsencrypt
+letsencrypt_http_server: nginx
