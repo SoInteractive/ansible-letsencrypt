@@ -1,0 +1,4 @@
+---
+letsencrypt_email: admin@example.com
+letsencrypt_domain: example.com
+letsencrypt_autorenew: true

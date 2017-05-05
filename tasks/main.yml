@@ -1,0 +1,28 @@
+---
+- name: Ensure certbot directories exists
+  file:
+    dest: "{{ item }}"
+    state: directory
+  with_items:
+    - /opt/certbot
+    - /var/log/certbot
+
+- name: Download certbot installer
+  get_url:
+    url: https://dl.eff.org/certbot-auto
+    dest: /opt/certbot/certbot-auto
+    mode: 0755
+
+- name: Generate ceritifacte
+  command: "certonly -n --agree-tos --email {{ letsencrypt_email }} --webroot -d {{ letsencrypt_domain }}"
+  args:
+    chdir: /opt/certbot
+
+- name: Enable autorenew every week
+  cron:
+    name: letsencrypt
+    minute: 0
+    hour: 1
+    weekday: 3
+    job: "/opt/certbot/certbot-auto renew --text >> /var/log/certbot/certbot-cron.log"
+  when: letsencrypt_autorenew

@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: Pawel Krupa
+  description: Letsencrypt certificates
+  company: Sointeractive
+  min_ansible_version: 1.9
+  platforms:
+   - name: EL
+     versions:
+       - all
+   - name: Ubuntu
+     versions:
+       - 16.04
+  galaxy_tags:
+   - certificates
+   - letsencrypt
+
+dependencies:
+  - { role: nginx }
+
