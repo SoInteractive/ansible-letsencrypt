@@ -15,7 +15,7 @@
     mode: 0755
 
 - name: Generate ceritifacte
-  command: "certonly -n --agree-tos --email {{ letsencrypt_email }} --webroot -d {{ letsencrypt_domain }}"
+  command: "./certbot-auto certonly -n --agree-tos --email {{ letsencrypt_email }} --webroot -w {{ letsencrypt_webroot }} -d {{ letsencrypt_domain }}"
   args:
     chdir: /opt/certbot
 
@@ -25,5 +25,5 @@
     minute: 0
     hour: 1
     weekday: 3
-    job: "/opt/certbot/certbot-auto renew --webroot -w { letsencrypt_webroot }} --text >> /var/log/certbot/renewal.log && systemctl restart {{ letsencrypt_http_server }}"
+    job: "/opt/certbot/certbot-auto renew --webroot -w {{ letsencrypt_webroot }} --text >> /var/log/certbot/renewal.log && systemctl restart {{ letsencrypt_http_server }}"
   when: letsencrypt_autorenew
