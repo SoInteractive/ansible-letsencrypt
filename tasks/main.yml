@@ -14,10 +14,21 @@
     dest: /opt/certbot/certbot-auto
     mode: 0755
 
+#- name: Verify if port 80 is serving files
+#  command: curl -sf http://{{ letsencrypt_domain }}/.well-known
+#  register: http_code
+#  ignore_errors: true
+  
 - name: Generate ceritifacte
-  command: "./certbot-auto certonly -n --agree-tos --email {{ letsencrypt_email }} --webroot -w {{ letsencrypt_webroot }} -d {{ letsencrypt_domain }}"
+  command: "./certbot-auto certonly -n --agree-tos --standalone --email {{ letsencrypt_email }} -d {{ letsencrypt_domain }}"
   args:
     chdir: /opt/certbot
+
+#- name: Generate ceritifacte when port 80 is in use
+#  command: "./certbot-auto certonly -n --agree-tos --email {{ letsencrypt_email }} --webroot -w {{ letsencrypt_webroot }} -d {{ letsencrypt_domain }}"
+#  args:
+#    chdir: /opt/certbot
+#  when: http_code == 200 
 
 - name: Enable autorenew every week
   cron:
