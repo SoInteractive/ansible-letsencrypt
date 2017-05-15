@@ -20,9 +20,10 @@
 #  ignore_errors: true
   
 - name: Generate ceritifacte
-  command: "./certbot-auto certonly -n --agree-tos --standalone --email {{ letsencrypt_email }} -d {{ letsencrypt_domain }}"
+  command: "./certbot-auto certonly -n --agree-tos --standalone --email {{ letsencrypt_email }} {{ item }}"
   args:
     chdir: /opt/certbot
+  with_items: "{{ letsencrypt_domains }}"
 
 #- name: Generate ceritifacte when port 80 is in use
 #  command: "./certbot-auto certonly -n --agree-tos --email {{ letsencrypt_email }} --webroot -w {{ letsencrypt_webroot }} -d {{ letsencrypt_domain }}"
