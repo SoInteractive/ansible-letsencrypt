@@ -19,8 +19,8 @@
 #  register: http_code
 #  ignore_errors: true
   
-- name: Generate ceritifacte
-  command: "./certbot-auto certonly -n --agree-tos --standalone --email {{ letsencrypt_email }} {{ item }}"
+- name: Generate certificate
+  command: "./certbot-auto certonly -n --agree-tos --standalone --email {{ letsencrypt_email }} {{ '-d ' + item }}"
   args:
     chdir: /opt/certbot
   with_items: "{{ letsencrypt_domains }}"
