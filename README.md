@@ -1,8 +1,8 @@
 Letsencrypt automation
 ======================
 
-Role should automatically download and install letsencrypt cerificate.
-Additionally it will set cerificate autorenewal.
+Role should automatically download and install letsencrypt certificate.
+Additionally it will set certificate autorenewal.
 
 Requirements
 ------------
@@ -17,7 +17,7 @@ Use it in a playbook as follows:
 - hosts: all
   become: true
   roles:
-    - letsencrypt
+    - sointeractive.letsencrypt
 ```
 
 Have a look at the [defaults/main.yml](defaults/main.yml) for role variables
