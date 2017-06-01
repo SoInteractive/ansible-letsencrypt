@@ -17,7 +17,7 @@ Use it in a playbook as follows:
 - hosts: all
   become: true
   roles:
-    - sointeractive.letsencrypt
+    - SoInteractive.letsencrypt
 ```
 
 Have a look at the [defaults/main.yml](defaults/main.yml) for role variables
