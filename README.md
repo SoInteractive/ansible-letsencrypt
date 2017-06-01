@@ -1,7 +1,7 @@
+![Logo](https://letsencrypt.org/images/letsencrypt-logo-horizontal.svg)
+
 Let’s Encrypt automation
 ========================
-
-![Logo](https://letsencrypt.org/images/letsencrypt-logo-horizontal.svg)
 
 Role should automatically download and install letsencrypt certificate.
 Additionally it will set certificate autorenewal.
