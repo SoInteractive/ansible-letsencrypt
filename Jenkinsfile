@@ -54,7 +54,6 @@ pipeline {
         }
         */
         mattermostSend color: 'good', message: "Job ${JOB_NAME} ${BUILD_NUMBER} ($gitlabActionType) has finished successfully (<${BUILD_URL}|Open>)"
-        }
       }
     }
   }
