@@ -2,7 +2,6 @@
 
 pipeline {
 
-  currentBuild.result = "SUCCESS"
   try {
     ws('workspace/letsencrypt') {
       stage('Checkout code') {
@@ -59,8 +58,10 @@ pipeline {
   }
 
   catch (err) {
-    mattermostSend color: 'danger', message: "Job ${JOB_NAME} ${BUILD_NUMBER} has failed(<${BUILD_URL}|Open>)"
-    currentBuild.result = "FAILURE"
-    throw err
+    stage('Notify about failure') {
+      mattermostSend color: 'danger', message: "Job ${JOB_NAME} ${BUILD_NUMBER} has failed(<${BUILD_URL}|Open>)"
+      /*currentBuild.result = "FAILURE"*/
+      throw err
+    }
   }
 }
