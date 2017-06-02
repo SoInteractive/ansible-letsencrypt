@@ -4,7 +4,7 @@
 pipeline {
   agent {
     node {
-      label 'repo'
+      label 'master'
       customWorkspace 'workspace/letsencrypt'
     }
   }
