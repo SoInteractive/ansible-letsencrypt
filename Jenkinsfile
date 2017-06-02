@@ -1,9 +1,8 @@
 #!groovy
 
-pipeline {
+node {
 
-    /*ws('workspace/letsencrypt') {*/
-    stages {
+    ws('workspace/letsencrypt') {
       stage('Checkout code') {
         sh 'echo "${BUILD_CAUSE}"'
         checkout scm
