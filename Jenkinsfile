@@ -1,6 +1,6 @@
 #!groovy
 
-pipeline {
+node {
 
   try {
     ws('workspace/letsencrypt') {
