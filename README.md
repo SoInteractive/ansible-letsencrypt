@@ -1,15 +1,16 @@
 ![Logo](https://letsencrypt.org/images/letsencrypt-logo-horizontal.svg)
 
-Let’s Encrypt automation
-========================
+Ansible role for Let’s Encrypt
+==============================
 
-Role should automatically download and install letsencrypt certificate.
-Additionally it will set certificate autorenewal.
+Role automatically downloads certbot, installs dependencies and creates TLS certificate.
+Additionally it sets certificate autorenewal in crontab.
 
 Requirements
 ------------
 
-globally resolvable domain name
+- globally resolvable domain name
+- open communication on port 80 and 443
 
 Examples
 --------
