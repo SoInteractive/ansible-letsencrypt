@@ -19,18 +19,19 @@
 #  command: curl -sf http://{{ letsencrypt_domain }}/.well-known
 #  register: http_code
 #  ignore_errors: true
-  
+
 - name: Generate certificate
   command: "./certbot-auto certonly -n --agree-tos --standalone --email {{ letsencrypt_email }} {{ '-d ' + item }}"
   args:
     chdir: /opt/certbot
   with_items: "{{ letsencrypt_domains }}"
+  when: letsencrypt_domains != []
 
 #- name: Generate ceritifacte when port 80 is in use
 #  command: "./certbot-auto certonly -n --agree-tos --email {{ letsencrypt_email }} --webroot -w {{ letsencrypt_webroot }} -d {{ letsencrypt_domain }}"
 #  args:
 #    chdir: /opt/certbot
-#  when: http_code == 200 
+#  when: http_code == 200
 
 - name: Ensure cron is installed
   package:

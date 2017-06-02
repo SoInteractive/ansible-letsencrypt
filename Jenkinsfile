@@ -15,10 +15,13 @@ pipeline {
         sh 'molecule converge'
       }
     }
-
-    stage('Run Tests'){
+    stage('Check syntax') {
       steps {
         sh 'molecule syntax'
+      }
+    }
+    stage('Run Tests'){
+      steps {
         sh 'molecule idempotence'
         sh 'molecule verify'
       }
