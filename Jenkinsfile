@@ -4,34 +4,33 @@ node {
 
   ws('workspace/letsencrypt') {
     stage('Checkout code') {
-      sh 'echo "${BUILD_CAUSE}"'
       checkout scm
     }
 
     stage('Prepare environment') {
-      step('Installing Molecule') {
+      step {
         sh 'sudo pip install molecule'
       }
 
-      step('Creating Containers') {
+      step {
         sh 'molecule create'
       }
 
-      step('Installing the Role') {
+      step {
         sh 'molecule converge'
       }
     }
 
     stage('Run Tests'){
-      step('Syntax check') {
+      step {
         sh 'molecule syntax'
       }
 
-      step('Idempotence check') {
+      step {
         sh 'molecule idempotence'
       }
 
-      step('Verify the application') {
+      step {
         sh 'molecule verify'
       }
     }
