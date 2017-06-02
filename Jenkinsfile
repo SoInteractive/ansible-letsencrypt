@@ -11,7 +11,6 @@ pipeline {
   stages {
     stage('Prepare environment') {
       steps {
-        sh 'env'
         sh 'molecule create'
         sh 'molecule converge'
       }
@@ -34,7 +33,7 @@ pipeline {
       sh 'molecule destroy'
     }
     success {
-      mattermostSend color: 'good', message: "Job ${JOB_NAME} ${BUILD_NUMBER} ($gitlabActionType) has finished successfully (<${BUILD_URL}|Open>)"
+      mattermostSend color: 'good', message: "Job ${JOB_NAME} ${BUILD_NUMBER} has finished successfully (<${BUILD_URL}|Open>)"
     }
     failure {
       mattermostSend color: 'danger', message: "Job ${JOB_NAME} ${BUILD_NUMBER} has failed(<${BUILD_URL}|Open>)"
