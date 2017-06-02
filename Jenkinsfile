@@ -2,38 +2,37 @@
 
 node {
 
-    ws('workspace/letsencrypt') {
-      stage('Checkout code') {
-        sh 'echo "${BUILD_CAUSE}"'
-        checkout scm
+  ws('workspace/letsencrypt') {
+    stage('Checkout code') {
+      sh 'echo "${BUILD_CAUSE}"'
+      checkout scm
+    }
+
+    stage('Prepare environment') {
+      step('Installing Molecule') {
+        sh 'sudo pip install molecule'
       }
 
-      stage('Prepare environment') {
-        step('Installing Molecule') {
-          sh 'sudo pip install molecule'
-        }
-
-        step('Creating Containers') {
-          sh 'molecule create'
-        }
-
-        step('Installing the Role') {
-          sh 'molecule converge'
-        }
+      step('Creating Containers') {
+        sh 'molecule create'
       }
 
-      stage('Run Tests'){
-        step('Syntax check') {
-          sh 'molecule syntax'
-        }
+      step('Installing the Role') {
+        sh 'molecule converge'
+      }
+    }
 
-        step('Idempotence check') {
-          sh 'molecule idempotence'
-        }
+    stage('Run Tests'){
+      step('Syntax check') {
+        sh 'molecule syntax'
+      }
 
-        step('Verify the application') {
-          sh 'molecule verify'
-        }
+      step('Idempotence check') {
+        sh 'molecule idempotence'
+      }
+
+      step('Verify the application') {
+        sh 'molecule verify'
       }
     }
   }
