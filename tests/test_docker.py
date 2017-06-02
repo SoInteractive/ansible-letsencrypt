@@ -1,11 +1,11 @@
 from testinfra.utils.ansible_runner import AnsibleRunner
 
-hosts = AnsibleRunner('.molecule/ansible_inventory').get_hosts('all')
+testinfra_hosts = AnsibleRunner('.molecule/ansible_inventory').get_hosts('all')
 
 
-def test_letsencrypt_folder(hosts):
+def test_letsencrypt_folder(File):
     # letsencrypt = host.file("/etc/letsencrypt")
-    letsencrypt = hosts.file("/var/log/certbot")
+    letsencrypt = File("/var/log/certbot")
     assert letsencrypt.is_directory
     assert letsencrypt.user == "root"
     assert letsencrypt.group == "root"
