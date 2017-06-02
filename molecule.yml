@@ -17,4 +17,3 @@ docker:
 #      image_version: 7
 #      ansible_groups:
 #        - group2
-
