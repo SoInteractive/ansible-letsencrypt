@@ -13,6 +13,7 @@
     url: https://dl.eff.org/certbot-auto
     dest: /opt/certbot/certbot-auto
     mode: 0755
+    validate_certs: False
 
 #- name: Verify if port 80 is serving files
 #  command: curl -sf http://{{ letsencrypt_domain }}/.well-known
