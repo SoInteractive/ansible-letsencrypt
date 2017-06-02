@@ -1,8 +1,10 @@
 #!groovy
 
 pipeline {
-  agent node {
-    customWorkspace 'workspace/letsencrypt'
+  agent {
+    node {
+      customWorkspace 'workspace/letsencrypt'
+    }
   }
   stages {
     stage('Checkout code') {
