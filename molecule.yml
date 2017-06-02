@@ -7,12 +7,12 @@ verifier:
   name: testinfra
 docker:
   containers:
-    - name: merge-test
+    - name: letsencrypt-ubuntu
       image: ubuntu
       image_version: xenial
       ansible_groups:
         - group1
-    - name: merge-test
+    - name: letsencrypt-centos
       image: centos
       image_version: 7
       ansible_groups:
