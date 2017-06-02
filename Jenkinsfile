@@ -11,6 +11,7 @@ pipeline {
   stages {
     stage('Prepare environment') {
       steps {
+        sh 'env'
         sh 'molecule create'
         sh 'molecule converge'
       }
