@@ -1,17 +1,15 @@
 #!groovy
 
-node {
-
-  ws('workspace/letsencrypt') {
+pipeline {
+  agent node {
+    customWorkspace 'workspace/letsencrypt'
+  }
+  stages {
     stage('Checkout code') {
       checkout scm
     }
 
     stage('Prepare environment') {
-      step {
-        sh 'sudo pip install molecule'
-      }
-
       step {
         sh 'molecule create'
       }
