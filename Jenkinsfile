@@ -9,15 +9,15 @@ pipeline {
     }
   }
   stages {
-    stage('Prepare environment') {
-      steps {
-        sh 'molecule create'
-        sh 'molecule converge'
-      }
-    }
     stage('Check syntax') {
       steps {
         sh 'molecule syntax'
+      }
+    }
+    stage('Provision environment') {
+      steps {
+        sh 'molecule create'
+        sh 'molecule converge'
       }
     }
     stage('Run Tests'){
