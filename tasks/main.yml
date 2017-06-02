@@ -32,6 +32,12 @@
 #    chdir: /opt/certbot
 #  when: http_code == 200 
 
+- name: Ensure cron is installed
+  package:
+    name: cron
+    state: installed
+  when: letsencrypt_autorenew
+
 - name: Enable autorenew every week
   cron:
     name: letsencrypt
