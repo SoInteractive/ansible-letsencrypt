@@ -1,8 +1,10 @@
 #!groovy
 
+/* Declarative pipeline */
 pipeline {
   agent {
     node {
+      label 'repo'
       customWorkspace 'workspace/letsencrypt'
     }
   }
