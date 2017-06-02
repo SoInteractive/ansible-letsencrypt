@@ -7,30 +7,17 @@ pipeline {
     }
   }
   stages {
-    stage('Checkout code') {
-      checkout scm
-    }
-
     stage('Prepare environment') {
-      step {
+      steps {
         sh 'molecule create'
-      }
-
-      step {
         sh 'molecule converge'
       }
     }
 
     stage('Run Tests'){
-      step {
+      steps {
         sh 'molecule syntax'
-      }
-
-      step {
         sh 'molecule idempotence'
-      }
-
-      step {
         sh 'molecule verify'
       }
     }
