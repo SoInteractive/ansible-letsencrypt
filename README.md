@@ -1,9 +1,9 @@
 ![Logo](https://letsencrypt.org/images/letsencrypt-logo-horizontal.svg)
 
-Ansible role for Let’s Encrypt
-==============================
+Ansible Role: Let’s Encrypt
+===========================
 
-[![Build Status](https://ci.devops.sosoftware.pl/buildStatus/icon?job=SoInteractive/letsencrypt/master)](https://ci.devops.sosoftware.pl/job/SoInteractive/letsencrypt/master)
+[![Build Status](https://ci.devops.sosoftware.pl/buildStatus/icon?job=SoInteractive/letsencrypt/master)](https://ci.devops.sosoftware.pl/job/SoInteractive/letsencrypt/master) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Twitter URL](https://img.shields.io/twitter/follow/sointeractive.svg?style=social&label=Follow%20%40SoInteractive)](https://twitter.com/sointeractive)
 
 Role automatically downloads certbot, installs dependencies and creates TLS certificate.
 Additionally it sets certificate autorenewal in crontab.
