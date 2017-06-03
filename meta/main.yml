@@ -4,6 +4,7 @@ galaxy_info:
   description: Letsencrypt certificates
   company: Sointeractive
   min_ansible_version: 1.9
+  license: "license (BSD, MIT)"
   platforms:
 #   - name: EL
 #     versions:
