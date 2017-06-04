@@ -1,4 +1,6 @@
-![Logo](https://letsencrypt.org/images/letsencrypt-logo-horizontal.svg)
+<a href="https://letsencrypt.org">
+    <img src="https://letsencrypt.org/images/letsencrypt-logo-horizontal.svg" alt="letsencrypt logo" title="letsencrypt" align="right" height="60" />
+</a>
 
 Ansible Role: Let’s Encrypt
 ===========================
