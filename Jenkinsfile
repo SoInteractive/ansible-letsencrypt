@@ -17,6 +17,10 @@ pipeline {
     stage('Provision environment') {
       steps {
         sh 'molecule create'
+      }
+    }
+    stage('Run ansible') {
+      steps {
         sh 'molecule converge'
       }
     }
