@@ -8,6 +8,11 @@ pipeline {
       customWorkspace 'workspace/letsencrypt'
     }
   }
+  options {
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(numToKeepStr: '30'))
+    timeout(time: 15, unit: 'MINUTES')
+  }
   stages {
     stage('Check syntax') {
       steps {
