@@ -20,6 +20,11 @@
 #  register: http_code
 #  ignore_errors: true
 
+- name: Disable firewall
+  command: iptables -P INPUT ACCEPT
+  when: letsencrypt_firewall
+  tags: skip_ansible_lint
+
 - name: Generate certificate
   command: "./certbot-auto certonly -n --agree-tos --standalone --email {{ letsencrypt_email }} {{ '-d ' + item }}"
   args:
@@ -33,17 +38,35 @@
 #    chdir: /opt/certbot
 #  when: http_code == 200
 
+- name: Reenable firewall
+  command: iptables -P INPUT DROP
+  when: letsencrypt_firewall
+  tags: skip_ansible_lint
+
 - name: Ensure cron is installed
   package:
     name: cron
     state: installed
   when: letsencrypt_autorenew
 
-- name: Enable autorenew every week
+- name: Enable autorenew every week [without firewall]
   cron:
     name: letsencrypt
     minute: 0
     hour: 1
     weekday: 3
     job: "/opt/certbot/certbot-auto renew --webroot -w {{ letsencrypt_webroot }} --text >> /var/log/letsencrypt/renewal.log && systemctl restart {{ letsencrypt_http_server }}"
-  when: letsencrypt_autorenew
+  when:
+    - letsencrypt_autorenew
+    - not letsencrypt_firewall
+
+- name: Enable autorenew every week [with ingress firewall]
+  cron:
+    name: letsencrypt
+    minute: 0
+    hour: 1
+    weekday: 3
+    job: "iptables -P INPUT ACCEPT; /opt/certbot/certbot-auto renew --webroot -w {{ letsencrypt_webroot }} --text >> /var/log/letsencrypt/renewal.log && systemctl restart {{ letsencrypt_http_server }}; iptables -P INPUT DROP"
+  when:
+    - letsencrypt_autorenew
+    - letsencrypt_firewall
