@@ -4,7 +4,8 @@ letsencrypt_domains: []
 #  - example.com
 
 letsencrypt_bind_port: 443
-letsencrypt_challenge: tls-sni
+letsencrypt_challenge: tls-sni-01
+#letsencrypt_challenge: http-01
 
 letsencrypt_firewall: false
 
