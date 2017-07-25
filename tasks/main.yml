@@ -37,7 +37,7 @@
   tags: skip_ansible_lint
 
 - name: Generate certificate
-  command: "./certbot-auto certonly -n --agree-tos --standalone --email {{ letsencrypt_email }} {{ '-d ' + item }} {{ '--preferred-challenges ' + letsencrypt_challenge }} {{ '--http-01-port ' + letsencrypt_bind_port }} {{ '--tls-sni-01-port ' + letsencrypt_bind_port }} --verbose"
+  command: "./certbot-auto certonly -n --agree-tos --standalone --email {{ letsencrypt_email }} {{ '-d ' + item }} --preferred-challenges {{ letsencrypt_challenge }} --http-01-port {{ letsencrypt_bind_port }} --tls-sni-01-port {{ letsencrypt_bind_port }}"
   args:
     chdir: /opt/certbot
   with_items: "{{ letsencrypt_domains }}"
