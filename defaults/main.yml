@@ -3,6 +3,9 @@ letsencrypt_email: admin@example.com
 letsencrypt_domains: []
 #  - example.com
 
+letsencrypt_bind_port: 443
+letsencrypt_challenge: tls-sni
+
 letsencrypt_firewall: false
 
 letsencrypt_autorenew: true
