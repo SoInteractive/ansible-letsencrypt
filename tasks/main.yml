@@ -64,6 +64,7 @@
   cron:
     name: letsencrypt
     cron_file: /etc/crontab
+    user: root
     minute: 21
     hour: 1
     job: "/opt/certbot/certbot-auto renew --webroot -w {{ letsencrypt_webroot }} --text >> /var/log/letsencrypt/renewal.log --post-hook 'systemctl restart {{ letsencrypt_http_server }}'"
@@ -75,6 +76,7 @@
   cron:
     name: letsencrypt
     cron_file: /etc/crontab
+    user: root
     minute: 21
     hour: 1
     job: "iptables -P INPUT ACCEPT; /opt/certbot/certbot-auto renew --webroot -w {{ letsencrypt_webroot }} --text >> /var/log/letsencrypt/renewal.log --post-hook 'systemctl restart {{ letsencrypt_http_server }}'; iptables -P INPUT DROP"
