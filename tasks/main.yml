@@ -60,24 +60,24 @@
     state: installed
   when: letsencrypt_autorenew
 
-- name: Enable autorenew every week [without firewall]
+- name: Enable autorenew every day [without firewall]
   cron:
     name: letsencrypt
-    minute: 0
+    cron_file: /etc/crontab
+    minute: 21
     hour: 1
-    weekday: 3
-    job: "/opt/certbot/certbot-auto renew --webroot -w {{ letsencrypt_webroot }} --text >> /var/log/letsencrypt/renewal.log && systemctl restart {{ letsencrypt_http_server }}"
+    job: "/opt/certbot/certbot-auto renew --webroot -w {{ letsencrypt_webroot }} --text >> /var/log/letsencrypt/renewal.log --post-hook 'systemctl restart {{ letsencrypt_http_server }}'"
   when:
     - letsencrypt_autorenew
     - not letsencrypt_firewall
 
-- name: Enable autorenew every week [with ingress firewall]
+- name: Enable autorenew every day [with ingress firewall]
   cron:
     name: letsencrypt
-    minute: 0
+    cron_file: /etc/crontab
+    minute: 21
     hour: 1
-    weekday: 3
-    job: "iptables -P INPUT ACCEPT; /opt/certbot/certbot-auto renew --webroot -w {{ letsencrypt_webroot }} --text >> /var/log/letsencrypt/renewal.log && systemctl restart {{ letsencrypt_http_server }}; iptables -P INPUT DROP"
+    job: "iptables -P INPUT ACCEPT; /opt/certbot/certbot-auto renew --webroot -w {{ letsencrypt_webroot }} --text >> /var/log/letsencrypt/renewal.log --post-hook 'systemctl restart {{ letsencrypt_http_server }}'; iptables -P INPUT DROP"
   when:
     - letsencrypt_autorenew
     - letsencrypt_firewall
