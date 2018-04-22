@@ -10,6 +10,10 @@ Ansible Role: Let’s Encrypt
 Role automatically downloads certbot, installs dependencies and creates TLS certificate.
 Additionally it sets certificate autorenewal in crontab.
 
+# :warning: IMPORTANT NOTICE
+
+THIS PROJECT IS ABANDONED. WE DO NOT ACCEPT ANY NEW ISSUES AND/OR PULL REQUESTS.
+
 Requirements
 ------------
 
